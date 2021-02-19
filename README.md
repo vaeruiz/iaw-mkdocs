@@ -37,6 +37,36 @@ theme: material
 
 - **theme.** Es el tema que vamos a utilizar para nuestra página, podemos desarrollarlo con más opciones que podemos encontrar en la [documentación](https://www.mkdocs.org/#mkdocs) oficial.
 
+## Probando nuestro sitio de forma local
+
+Con toda la estructura creada podemos lanzar un contenedor servidor que nos permita ver en tiempo real los cambios que hagamos. Este servidor nos sirve de forma local, aún no podremos lanzar la página a Github.
+
+Lanzamos el contenedor local:
+
+> docker run --rm -it -p 8000:8000 -v "$PWD":/docs squidfunk/mkdocs-material
+
+Si ingresamos a localhost:8000 podremos ver nuestro sitio y empezar a añadirle contenido.
+
+## Lanzando nuestro sitio a Github Pages
+
+Teniendo nuestro sitio hecho, para lanzarlo a Github haremos lo siguiente:
+
+1. Hacer que nuestro directorio proyecto sea un repositorio local.
+
+> git init
+
+2. Linkear nuestro repositorio local con el repositorio que corresponde a MkDocs en Github.
+
+> git remote add origin url_del_directorio
+
+3. Lanzar el contenedor que nos subirá los archivos a Github. Este contenedor nos pedirá nuestros credenciales de usuario.
+
+> docker run --rm -it -v ~/.ssh:/root/.ssh -v "$PWD":/docs squidfunk/mkdocs-material gh-deploy
+
+Después de iniciar la sesión se subirá nuestra infraestructura convertida al repositorio de Github, es cuestión de tiempo que podamos acceder a nuestro sitio y ver el contenido que hemos creado.
+
+**Los pasos 1 y 2 solo son necesarios hacerlos una vez, a no ser que cambiemos de máquina o perdamos el repositorio que hemos convertido en local.**
+
 ## Imágenes y recursos multimedia
 
 Todo el contenido multimedia que queramos añadir a nuestras páginas debe estar previamente almacenado en un directorio de nuestro repositorio, para adjuntar, por ejemplo, una foto, tenemos que utilizar la url de la foto una vez que esté en el repositorio, ejemplo 
