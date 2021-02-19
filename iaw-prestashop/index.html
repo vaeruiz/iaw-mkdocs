@@ -14,7 +14,7 @@
     
     
       
-        <title>iaw-https-docker - PACR-MKDOCS</title>
+        <title>iaw-prestashop - PACR-MKDOCS</title>
       
     
     
@@ -58,7 +58,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#https-con-docker-y-docker-compose" class="md-skip">
+        <a href="#instalacion-de-prestashop-a-traves-de-contenedores-docker" class="md-skip">
           Skip to content
         </a>
       
@@ -90,7 +90,7 @@
         <div class="md-header-nav__topic">
           <span class="md-ellipsis">
             
-              iaw-https-docker
+              iaw-prestashop
             
           </span>
         </div>
@@ -198,6 +198,21 @@
 
   
   
+  
+    <li class="md-nav__item">
+      <a href="../iaw-https-docker/" class="md-nav__link">
+        iaw-https-docker
+      </a>
+    </li>
+  
+
+    
+      
+      
+      
+
+  
+  
     
   
   
@@ -209,12 +224,12 @@
       
       
         <label class="md-nav__link md-nav__link--active" for="__toc">
-          iaw-https-docker
+          iaw-prestashop
           <span class="md-nav__icon md-icon"></span>
         </label>
       
       <a href="./" class="md-nav__link md-nav__link--active">
-        iaw-https-docker
+        iaw-prestashop
       </a>
       
         
@@ -231,29 +246,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#preparando-la-maquina" class="md-nav__link">
-    Preparando la máquina
+  <a href="#instalando-docker-y-docker-compose" class="md-nav__link">
+    Instalando docker y docker-compose
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#preparando-nuestro-dominio" class="md-nav__link">
-    Preparando nuestro dominio
+  <a href="#utilizando-docker-compose" class="md-nav__link">
+    Utilizando docker-compose
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#trabajando-con-docker-y-docke-compose" class="md-nav__link">
-    Trabajando con Docker y Docke-compose
+  <a href="#variables" class="md-nav__link">
+    Variables
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#enlace-a-mi-sitio-prestashop" class="md-nav__link">
-    Enlace a mi sitio prestashop
+  <a href="#demostracion" class="md-nav__link">
+    Demostración
   </a>
   
 </li>
@@ -262,21 +277,6 @@
   
 </nav>
       
-    </li>
-  
-
-    
-      
-      
-      
-
-  
-  
-  
-    <li class="md-nav__item">
-      <a href="../iaw-prestashop/" class="md-nav__link">
-        iaw-prestashop
-      </a>
     </li>
   
 
@@ -306,29 +306,29 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#preparando-la-maquina" class="md-nav__link">
-    Preparando la máquina
+  <a href="#instalando-docker-y-docker-compose" class="md-nav__link">
+    Instalando docker y docker-compose
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#preparando-nuestro-dominio" class="md-nav__link">
-    Preparando nuestro dominio
+  <a href="#utilizando-docker-compose" class="md-nav__link">
+    Utilizando docker-compose
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#trabajando-con-docker-y-docke-compose" class="md-nav__link">
-    Trabajando con Docker y Docke-compose
+  <a href="#variables" class="md-nav__link">
+    Variables
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#enlace-a-mi-sitio-prestashop" class="md-nav__link">
-    Enlace a mi sitio prestashop
+  <a href="#demostracion" class="md-nav__link">
+    Demostración
   </a>
   
 </li>
@@ -346,105 +346,49 @@
               
                 
                 
-                <h1 id="https-con-docker-y-docker-compose">HTTPS con Docker y Docker-compose</h1>
-<p>Instalando una aplicación web y añadiendo un certificado HTTPS con Docker.</p>
-<h2 id="preparando-la-maquina">Preparando la máquina</h2>
-<p>Necesitamos una máquina con al menos 2GB de RAM y con los puertos HTTP(80), HTTPS(443), MySQL(3306) y el 8080 abiertos.</p>
-<h2 id="preparando-nuestro-dominio">Preparando nuestro dominio</h2>
-<p>Creamos el nombre de dominio, vamos a la página <a href="https://www.freenom.com/es/index.html?lang=es">Freenom</a>, nos registramos e iniciamos sesión, cuando estemos logueados vamos a Servicios&gt;Registrar nuevo dominio. Se nos abrirá una nueva página en la que ingresaremos el nombre de dominio que queremos crear y pulsaremos el botón para comprobar la disponibilidad.</p>
-<p>Si está libre, podremos elegir una lista de dominios, cuando seleccionemos el que queremos, en la parte superior saldrá que tenemos un dominio añadido junto con un botón llamado checkout, le damos y pasamos a la pantalla de "compra". Sobre el tiempo que estará el dominio disponible, seleccionamos 1 mes ya que esto es una prueba. </p>
-<p>Le damos a continuar, en la pantalla de confirmación aceptamos los términos y condiciones de uso, y le damos a completar encargo.</p>
-<p>Cuando termine este proceso, volvemos a la ventana de servicios y vamos a Mis dominios, dentro veremos que ya podemos utilizar el dominio que hemos reservado antes, vamos a sus opciones (botón Manage Domain), una vez dentro vamos a la sección Manage Freenom DNS.</p>
-<p>En la nueva página que se nos abre, deberemos de crear 2 registros DNS de tipo A que apunten a nuestra máquina de Amazon, en mi caso los registros han quedado de la siguiente manera.</p>
-<p><img alt="Imagen de demostracion 1" src="https://github.com/vaeruiz/iaw-https-docker/blob/main/capturas/captura1.png?raw=true" /></p>
-<h2 id="trabajando-con-docker-y-docke-compose">Trabajando con Docker y Docke-compose</h2>
-<p>Actualizamos los repositorios del sistema e instalamos docker y docker-compose y lo configuramos igual que hemos hecho en prácticas anteriores.</p>
-<p>Cuando hayamos hecho este paso crearemos el archivo YML, este archivo consta de lo siguiente:</p>
-<pre><code>version: '3.4'
-
-services:
-  mysql:
-    image: mysql
-    command: --default-authentication-plugin=mysql_native_password
-    ports: 
-      - 3306:3306
-    environment: 
-      - MYSQL_ROOT_PASSWORD=${MYSQL_ROOT_PASSWORD}
-      - MYSQL_DATABASE=${MYSQL_DATABASE}
-      - MYSQL_USER=${MYSQL_USER}
-      - MYSQL_PASSWORD=${MYSQL_PASSWORD}
-    volumes: 
-      - mysql_data:/var/lib/mysql
-    networks: 
-      - backend-network
-    restart: always
-
-  phpmyadmin:
-    image: phpmyadmin
-    ports:
-      - 8080:80
-    environment: 
-      - PMA_ARBITRARY=1
-    networks: 
-      - backend-network
-      - frontend-network
-    restart: always
-    depends_on: 
-      - mysql
-
-  prestashop:
-    image: prestashop/prestashop
-    environment: 
-      - DB_SERVER=mysql
-    volumes:
-      - prestashop_data:/var/www/html
-    networks: 
-      - backend-network
-      - frontend-network
-    restart: always
-    depends_on: 
-      - mysql
-
-  https-portal:
-    image: steveltn/https-portal:1
-    ports:
-      - 80:80
-      - 443:443
-    restart: always
-    environment:
-      DOMAINS: 'rcapsecuredocker.tk -&gt; http://prestashop:80'
-      #STAGE 'production' # Utilizar cuando el sitio esté listo
-      STAGE: 'staging' # Utilizar para pruebas
-      # FORCE_RENEW: 'true'
-    networks:
-      - frontend-network
-
-volumes:
-  mysql_data:
-  prestashop_data:
-
-networks: 
-  backend-network:
-  frontend-network:
-</code></pre>
-<p>El archivo .yml estará disponible en el repositorio.</p>
-<p>Es importante que hasta que no tengamos claro que no tengamos que nuestro contenedor está listo para lanzarlo de forma profesional a Internet tenemos que utilizar el STAGE de pruebas denominado "staging", cuando tengamos claro que nuestra infraestructura está preparada, utilizaremos el stage "production" podemos incluir en el yml varias lineas de STAGE comentadas de cada tipo, así solo tendremos que descomentar la que nos interese utilizar..</p>
-<p>El archivo .env con las variables correspondientes estará disponible en el repositorio.</p>
-<p>Antes de poner en funcionamiento todos los contenedores, tenemos que asegurarnos de que la linea DOMAINS del servicio HTTPS tiene nuestro dominio puesto.</p>
-<p>Teniendo todo listo lanzamos nuestra infraestructura con el comando docker-compose up -d.</p>
-<p>Si entramos en el dominio podremos ver que tenemos nuestra aplicación web bajo una conexión SSL.</p>
-<p><img alt="Imagen de demostracion 2" src="https://github.com/vaeruiz/iaw-https-docker/blob/main/capturas/captura2.png?raw=true" /></p>
-<p>Cuando hayamos instalado nuestra aplicación web (en este caso Prestashop) cabe la posibilidad de que tengamos que activar el protocolo SSL desde el panel de administración, si no nos deja, podemos hacerlo modificando la base de datos. Vamos al PhpMyAdmin y ejecutamos las siguientes instrucciones en el apartado SQL o modificando los valores de forma gráfica.</p>
-<pre><code>UPDATE ps_configuration SET value=1 WHERE name=&quot;PS_SSL_ENABLED&quot;;
-
-UPDATE ps_configuration SET value=1 WHERE name=&quot;PS_SSL_ENABLED_EVERYWHERE&quot;;
-</code></pre>
-<p>Con estos cambios hechos si entramos a nuestro sitio web Prestashop podremos observar que ya es un sitio completamente seguro.</p>
-<p><strong>En cada aplicación web este proceso puede ser distinto.</strong></p>
-<h2 id="enlace-a-mi-sitio-prestashop">Enlace a mi sitio prestashop</h2>
-<ul>
-<li><strong><a href="https://rcapsecuredocker.tk">rcapsecuredocker.tk</a></strong></li>
-</ul>
+                <h1 id="instalacion-de-prestashop-a-traves-de-contenedores-docker">Instalación de Prestashop a través de contenedores Docker</h1>
+<p>Vamos a crear una tienda de Prestashop utilizando contenedores Docker.</p>
+<h2 id="instalando-docker-y-docker-compose">Instalando docker y docker-compose</h2>
+<p>Para instalar ambas utilidades tenemos que ejecutar el siguiente comando:</p>
+<blockquote>
+<p>apt install docker docker-compose</p>
+</blockquote>
+<p>Cuando se descargue, cada vez que las queramos utilizar deberá de ser con el comando sudo, para evitar esto, tenemos que meter al usuario en el grupo de usuarios de Docker, esto se hace con la siguiente instrucción:</p>
+<blockquote>
+<p>sudo usermod -aG docker $USER</p>
+</blockquote>
+<p>Después de esto, tenemos que habilitar el servicio docker para que se arranque cada vez que iniciemos el sistema, para ello ejecutamos:</p>
+<blockquote>
+<p>sudo systemctl enable docker</p>
+</blockquote>
+<p>Ahora reiniciamos la máquina haciendo un reboot y podremos empezar a utilizar docker con total normalidad.</p>
+<h2 id="utilizando-docker-compose">Utilizando docker-compose</h2>
+<p>Como se explico en la práctica anterior, docker-compose nos permite crear un archivo de configuración con los parámetros necesarios de tal forma que en el momento en el que invoquemos al archivo, se levante toda la infraestructura que queremos.</p>
+<p>En el repositorio de esta práctica subiré el archivo .yml utilizado.</p>
+<p>El comando para llamar al archivo de configuración y ponerlo todo en marcha es el siguiente:</p>
+<blockquote>
+<p>docker-compose up -d</p>
+</blockquote>
+<p>Después de ejecutarlo, el sistema se encarga de obtener las imágenes y aplicar las configuraciones que hemos especificado para cada contenedor.</p>
+<h2 id="variables">Variables</h2>
+<p>Se pueden hacer uso de variables para no tener que estar constantemente cambiando los parámetros necesarios en el archivo, así, solo establecemos el parámetro una vez, y cada vez que o necesitemos solo tenemos que llamarlo.</p>
+<p>Para ello tenemos que crear un archivo .env (tiene que llamarse así solamente) en el mismo directorio en el que se encuentra nuestro .yml.</p>
+<p>Dentro del archivo escribimos el parámetro al que tiene que pertenecer la variable seguido del signo = y la variabe, un ejemplo es el siguiente:</p>
+<blockquote>
+<p>MYSQL_PASSWORD=contraseña_super_segura_12345</p>
+</blockquote>
+<p>Para llamar a la variable en el archivo de configuración solo hay que poner el parámetro, el signo igual, y poner ${Nombre variable}, es decir, algo así:</p>
+<blockquote>
+<p>MYSQL_PASSWORD=${MYSQL_PASSWORD}</p>
+</blockquote>
+<p>Después de esto, podremos levantar toda nuestra infraestructura.</p>
+<h2 id="demostracion">Demostración</h2>
+<p>Aquí se ven unas capturas de la infraestructura en marcha:</p>
+<p><img alt="Imagen de demostracion 1" src="https://github.com/vaeruiz/iaw-prestashop/blob/main/capturas/demo1.png?raw=true" /></p>
+<p><img alt="Imagen de demostracion 2" src="https://github.com/vaeruiz/iaw-prestashop/blob/main/capturas/demo2.png?raw=true" /></p>
+<p><img alt="Imagen de demostracion 3" src="https://github.com/vaeruiz/iaw-prestashop/blob/main/capturas/demo3.png?raw=true" /></p>
+<p><img alt="Imagen de demostracion 4" src="https://github.com/vaeruiz/iaw-prestashop/blob/main/capturas/demo4.png?raw=true" /></p>
+<p><img alt="Imagen de demostracion 5" src="https://github.com/vaeruiz/iaw-prestashop/blob/main/capturas/demo5.png?raw=true" /></p>
                 
               
               
@@ -463,7 +407,7 @@ UPDATE ps_configuration SET value=1 WHERE name=&quot;PS_SSL_ENABLED_EVERYWHERE&q
     <div class="md-footer-nav">
       <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
         
-          <a href="../about/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+          <a href="../iaw-https-docker/" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
             <div class="md-footer-nav__button md-icon">
               <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
             </div>
@@ -472,25 +416,11 @@ UPDATE ps_configuration SET value=1 WHERE name=&quot;PS_SSL_ENABLED_EVERYWHERE&q
                 <span class="md-footer-nav__direction">
                   Previous
                 </span>
-                Acerca de
+                iaw-https-docker
               </div>
             </div>
           </a>
         
-        
-          <a href="../iaw-prestashop/" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
-            <div class="md-footer-nav__title">
-              <div class="md-ellipsis">
-                <span class="md-footer-nav__direction">
-                  Next
-                </span>
-                iaw-prestashop
-              </div>
-            </div>
-            <div class="md-footer-nav__button md-icon">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
-            </div>
-          </a>
         
       </nav>
     </div>
